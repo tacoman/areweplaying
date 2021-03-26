@@ -16,9 +16,15 @@
   <div class="alert alert-info text-center" role="alert">
       To deploy your own copy, and learn the fundamentals of the Heroku platform, head over to the <a href="https://devcenter.heroku.com/articles/getting-started-with-go" class="alert-link">Getting Started with Go on Heroku</a> tutorial.
   </div>
-  <div class="alert alert-success text-center" role="alert">
-      {{ .Message }}
+  {{ if .Matchday }}
+    <div class="alert alert-success text-center" role="alert">
+        MOTHERFUCKING MATCHDAY
+    </div>
+  {{ else }}
+  <div class="alert alert-danger text-center" role="alert">
+      not motherfucking matchday
   </div>
+  {{ end }}
 
   <table>
     <thead>

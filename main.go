@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+	_ "fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -37,9 +37,7 @@ func main() {
 
 	var matches []Match
     for _, file := range files {
-        fmt.Println(file.Name())
 		dat, _ := ioutil.ReadFile("./data/" + file.Name())
-		fmt.Printf("%+v\n", dat)
 		var fileMatches []Match
 		if err := json.Unmarshal(dat, &fileMatches); err != nil {
 			panic(err)
@@ -57,11 +55,25 @@ func main() {
 	router.Static("/static", "static")
 
 	router.GET("/", func(c *gin.Context) {
-		fmt.Printf("%+v\n", matches)
+		y, m, d := time.Now().Date()
+		var today = time.Date(y, m, d, 0, 0, 0, 0, time.Now().Location())
+		var index int
+		var element Match
+		for index, element = range matches {
+			if element.Time.After(today) {
+				break;
+			}
+		}
+		maxLength:= len(matches)
+		if maxLength > index + 5 {
+			maxLength = index + 5
+		}
+		activeMatches := matches[index:maxLength]
 		c.HTML(http.StatusOK, "index.tmpl.html", gin.H {
 			"Message": "",
 			"Markup": "<b>Another Test</b>",
-			"Matches": matches,
+			"Matches": activeMatches,
+			"Matchday": false,
 		})
 	})
 
