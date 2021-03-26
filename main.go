@@ -36,7 +36,7 @@ func main() {
 		matches = append(matches, Match {Time: time.Now().Format("Mon Jan 2 15:04"), Opponent: "US Soccer", Venue: "The Galaxy", StreamLink: "https://youtube.com", StreamTitle: "Youtube"})
 		fmt.Printf("%+v\n", matches)
 		c.HTML(http.StatusOK, "index.tmpl.html", gin.H {
-			"Message": "Test",
+			"Message": "",
 			"Markup": "<b>Another Test</b>",
 			"Matches": matches,
 		})

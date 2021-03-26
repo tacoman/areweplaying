@@ -1,9 +1,7 @@
 
 # go-getting-started
 
-A barebones Go app, which can easily be deployed to Heroku.
-
-This application supports the [Getting Started with Go on Heroku](https://devcenter.heroku.com/articles/getting-started-with-go) article - check it out.
+The source code for the [Is Detroit City FC playing yet?](https://thereisnodomainyetbutgoodonyouforchecking.org) website. Edit the JSON files in `data/` to set the schedule and submit a PR to update it automatically.
 
 ## Running Locally
 
