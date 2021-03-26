@@ -1,0 +1,18 @@
+[
+    {
+        "Time": "2020-03-26T19:30:00.000Z",
+        "Opponent": "US Soccer",
+        "Venue": "The Galaxy",
+        "Competition": "UWS",
+        "StreamLink": "https://youtube.com",
+        "StreamTitle": "YouTube"
+    },
+    {
+        "Time": "2020-03-22T19:30:00.000Z",
+        "Opponent": "The League",
+        "Venue": "Keyworth",
+        "Competition": "UWS",
+        "StreamLink": "https://youtube.com",
+        "StreamTitle": "YouTube"
+    }
+]
