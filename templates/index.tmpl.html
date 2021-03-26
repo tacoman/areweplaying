@@ -42,7 +42,7 @@
         <td>{{.Opponent}}</td>
         <td>{{.Venue}}</td>
         <td>{{.Competition}}</td>
-        <td>{{.Time}}</td>
+        <td>{{.Time.Format "Mon Jan 02 15:04"}}</td>
         <td><a href="{{.StreamLink}}">{{.StreamTitle}}</a></td>
       </tr>
       {{ end }}
