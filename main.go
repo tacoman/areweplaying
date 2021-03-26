@@ -75,8 +75,6 @@ func main() {
 		}
 		activeMatches := matches[index:maxLength]
 		c.HTML(http.StatusOK, "index.tmpl.html", gin.H {
-			"Message": "",
-			"Markup": "<b>Another Test</b>",
 			"Matches": activeMatches,
 			"Matchday": matchday,
 		})
