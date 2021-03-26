@@ -1,8 +1,6 @@
 <html>
   {{template "header.tmpl.html"}}
 <body>
-  {{template "nav.tmpl.html"}}
-
 <div class="jumbotron text-center">
   <div class="container">
     <a href="/" class="lang-logo">
@@ -18,6 +16,31 @@
   <div class="alert alert-info text-center" role="alert">
       To deploy your own copy, and learn the fundamentals of the Heroku platform, head over to the <a href="https://devcenter.heroku.com/articles/getting-started-with-go" class="alert-link">Getting Started with Go on Heroku</a> tutorial.
   </div>
+  <div class="alert alert-info text-center" role="alert">
+      {{ .Message }}
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+          <th>Opponent</th>
+          <th>Venue</th>
+          <th>Time</th>
+          <th>Stream</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ range .Matches }}
+      <tr>
+        <td>{{.Opponent}}</td>
+        <td>{{.Venue}}</td>
+        <td>{{.Time}}</td>
+        <td><a href="{{.StreamLink}}">{{.StreamTitle}}</a></td>
+      </tr>
+      {{ end }}
+    </tbody>
+  </table>
+
   <hr>
   <div class="row">
     <div class="col-md-6">
