@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	_ "fmt"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -59,8 +59,13 @@ func main() {
 		var today = time.Date(y, m, d, 0, 0, 0, 0, time.Now().Location())
 		var index int
 		var element Match
+		matchday := false
 		for index, element = range matches {
-			if element.Time.After(today) {
+			if today.Before(element.Time) {
+				if element.Time.Day() == d {
+					matchday = true
+				}
+				fmt.Println("breaking!")
 				break;
 			}
 		}
@@ -73,7 +78,7 @@ func main() {
 			"Message": "",
 			"Markup": "<b>Another Test</b>",
 			"Matches": activeMatches,
-			"Matchday": false,
+			"Matchday": matchday,
 		})
 	})
 
