@@ -64,11 +64,9 @@ type CalendarEvents struct {
 }
 
 func getCalendarEvents() CalendarEvents {
-	fmt.Println("Calling API...")
 
 	client := &http.Client{}
 	apiKey := os.Getenv("API_KEY")
-	fmt.Println(apiKey)
 	requestUrl := fmt.Sprint("https://www.googleapis.com/calendar/v3/calendars/qnjbamj73cgtn2bcgjmuojejt0%40group.calendar.google.com/events?key=", apiKey, "&timeMin=2021-03-31T00:00:00-00:00&singleEvents=true&orderBy=startTime")
 	req, err := http.NewRequest("GET", requestUrl, nil)
 	if err != nil {
@@ -87,7 +85,6 @@ func getCalendarEvents() CalendarEvents {
 	}
 	var responseObject CalendarEvents
 	json.Unmarshal(bodyBytes, &responseObject)
-	fmt.Printf("API Response as struct %+v\n", responseObject)
 	return responseObject
 }
 
