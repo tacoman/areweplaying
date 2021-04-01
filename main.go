@@ -108,7 +108,19 @@ func main() {
 			match.Venue = event.Location
 			match.Time = event.Start.Datetime
 			match.Competition = competitionMatcher.FindStringSubmatch(event.Summary)[1]
-			fmt.Println(event.Summary)
+			//e.g. "DCFC at Indiana Union"
+			precomp := strings.Split(event.Summary,"(")[0]
+			splitStr := strings.SplitAfter(precomp, "DCFC")
+			if len(splitStr) == 2 {
+				match.Opponent = splitStr[1]
+			} else {
+				splitStr = strings.SplitAfter(precomp, "Detroit City FC")
+				if len(splitStr) == 2 {
+					match.Opponent = splitStr[1]
+				} else {
+					match.Opponent = "???????"
+				}
+			}
 			matches = append(matches, match)
 		}
 	}
