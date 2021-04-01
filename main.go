@@ -67,7 +67,9 @@ func getCalendarEvents() CalendarEvents {
 
 	client := &http.Client{}
 	apiKey := os.Getenv("API_KEY")
-	requestUrl := fmt.Sprint("https://www.googleapis.com/calendar/v3/calendars/qnjbamj73cgtn2bcgjmuojejt0%40group.calendar.google.com/events?key=", apiKey, "&timeMin=2021-03-31T00:00:00-00:00&singleEvents=true&orderBy=startTime")
+	y, m, d := time.Now().Date()
+	var today = time.Date(y, m, d, 0, 0, 0, 0, time.Now().Location())
+	requestUrl := fmt.Sprint("https://www.googleapis.com/calendar/v3/calendars/qnjbamj73cgtn2bcgjmuojejt0%40group.calendar.google.com/events?key=", apiKey, "&timeMin=", today.Format("2006-01-02T00:00:00-00:00"), "&singleEvents=true&orderBy=startTime")
 	req, err := http.NewRequest("GET", requestUrl, nil)
 	if err != nil {
 		fmt.Print(err.Error())
