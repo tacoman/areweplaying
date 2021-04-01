@@ -97,39 +97,6 @@ func main() {
 		log.Fatal("$PORT must be set")
 	}
 
-	events := getCalendarEvents()
-	competitionMatcher := regexp.MustCompile(`\((.*?)\)`)
-
-	var matches []Match
-	for _, event := range events.Items {
-		if strings.Contains(event.Summary, "at") ||
-		strings.Contains(event.Summary, "vs") ||
-		strings.Contains(event.Summary, "VS") ||
-		strings.Contains(event.Summary, "AT") {
-			match := Match{}
-			match.Venue = event.Location
-			match.Time = event.Start.Datetime
-			match.Competition = competitionMatcher.FindStringSubmatch(event.Summary)[1]
-			//e.g. "DCFC at Indiana Union"
-			precomp := strings.Split(event.Summary,"(")[0]
-			splitStr := strings.SplitAfter(precomp, "DCFC")
-			if len(splitStr) == 2 {
-				match.Opponent = splitStr[1]
-			} else {
-				splitStr = strings.SplitAfter(precomp, "Detroit City FC")
-				if len(splitStr) == 2 {
-					match.Opponent = splitStr[1]
-				} else {
-					match.Opponent = "???????"
-				}
-			}
-			matches = append(matches, match)
-		}
-	}
-
-	sort.Slice(matches[:], func(i, j int) bool {
-		return matches[i].Time.Before(matches[j].Time)
-	})
 
 	router := gin.New()
 	router.Use(gin.Logger())
@@ -137,6 +104,40 @@ func main() {
 	router.Static("/static", "static")
 
 	router.GET("/", func(c *gin.Context) {
+		events := getCalendarEvents()
+		competitionMatcher := regexp.MustCompile(`\((.*?)\)`)
+	
+		var matches []Match
+		for _, event := range events.Items {
+			if strings.Contains(event.Summary, "at") ||
+			strings.Contains(event.Summary, "vs") ||
+			strings.Contains(event.Summary, "VS") ||
+			strings.Contains(event.Summary, "AT") {
+				match := Match{}
+				match.Venue = event.Location
+				match.Time = event.Start.Datetime
+				match.Competition = competitionMatcher.FindStringSubmatch(event.Summary)[1]
+				//e.g. "DCFC at Indiana Union"
+				precomp := strings.Split(event.Summary,"(")[0]
+				splitStr := strings.SplitAfter(precomp, "DCFC")
+				if len(splitStr) == 2 {
+					match.Opponent = splitStr[1]
+				} else {
+					splitStr = strings.SplitAfter(precomp, "Detroit City FC")
+					if len(splitStr) == 2 {
+						match.Opponent = splitStr[1]
+					} else {
+						match.Opponent = "???????"
+					}
+				}
+				matches = append(matches, match)
+			}
+		}
+	
+		sort.Slice(matches[:], func(i, j int) bool {
+			return matches[i].Time.Before(matches[j].Time)
+		})
+
 		y, m, d := time.Now().Date()
 		var today = time.Date(y, m, d, 0, 0, 0, 0, time.Now().Location())
 		var index int
