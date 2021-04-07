@@ -1,40 +1,50 @@
 <html>
   {{template "header.tmpl.html"}}
-<body>
+
   {{ if .Matchday }}
-    <div class="alert alert-success text-center" role="alert">
-        MOTHERFUCKING MATCHDAY
-    </div>
+<body class="yes">
   {{ else }}
-  <div class="alert alert-danger text-center" role="alert">
-      not motherfucking matchday
-  </div>
-  {{ end }}
-
-  <table>
-    <thead>
-      <tr>
-          <th>Opponent</th>
-          <th>Venue</th>
-          <th>Competition</th>
-          <th>Time</th>
-          <th>Stream</th>
-      </tr>
-    </thead>
-    <tbody>
+  <body class="no">
+    {{ end }}
+  <div class="content">
+    {{ if .Matchday }}
+    <div class="jumbotron">
+      <h1>Yes!</h1>
+      <h2>(Motherfucking Match Day!)</h2>
+    </div>
+    {{ else }}
+    <div class="jumbotron">
+      <h1>No.</h1>
+      <!-- if displaying upcoming matches, else leave blank -->
+      <!-- <h2>Upcoming matches:</h2> -->
+      <h2></h2>
+    </div>
+    {{ end }}
+    <div class="schedule-container">
       {{ range .Matches }}
-      <tr>
-        <td>{{.Opponent}}</td>
-        <td>{{.Venue}}</td>
-        <td>{{.Competition}}</td>
-        <td>{{.Time.Format "Mon Jan 02 15:04"}}</td>
-        <td><a href="{{.StreamLink}}">{{.StreamTitle}}</a></td>
-      </tr>
-      {{ end }}
-    </tbody>
-  </table>
-
-  <hr>
-
+      <!-- need check from home/away -->
+      <div class="match-info home"> 
+        <p>{{.Time.Format "Mon Jan 02 15:04"}}</p>
+        <h2>{{.Opponent}}</h2>
+        <p>{{.Venue}}</p>
+        <p>{{.Competition}} | <a href="{{.StreamLink}}">Watch</a></p>
+      </div>
+      {{end}}
+      <!-- static example home/away-->
+      <!--
+      <div class="match-info home">
+        <p>Today | 4:30 pm</p>
+        <h2>West Michigan Bearings</h2>
+        <p>Keyworth Stadium | Hamtramck, MI</p>
+        <p>MWPL | <a href="#">Watch</a></p>
+      </div>
+      <div class="match-info away">
+        <p>Today | 7:30 pm</p>
+        <h2>Chicago Mustangs</h2>
+        <p>A Chicago Stadium | Chicago, IL</p>
+        <p>UWS | <a href="#">Watch</a></p>
+      </div>
+      -->
+    </div>
 </body>
 </html>

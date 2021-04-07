@@ -1,37 +1,177 @@
-.jumbotron {
-  background: #532F8C;
-  color: white;
-  padding-bottom: 80px; }
-  .jumbotron .btn-primary {
-    background: #845ac7;
-    border-color: #845ac7; }
-    .jumbotron .btn-primary:hover {
-      background: #7646c1; }
-  .jumbotron p {
-    color: #d9ccee;
-    max-width: 75%;
-    margin: 1em auto 2em; }
-  .navbar + .jumbotron {
-    margin-top: -20px; }
-  .jumbotron .lang-logo {
-    display: block;
-    background: #B01302;
-    border-radius: 50%;
-    overflow: hidden;
-    width: 100px;
-    height: 100px;
-    margin: auto;
-    border: 2px solid white; }
-    .jumbotron .lang-logo img {
-      max-width: 100%; }
+/* gold #c7990b, darker gold #988052, rouge #74090c, lighter rouge #be1931, ngs-dark #14171c */
 
-table,
-td {
-    border: 1px solid #333;
+:root {
+  --fontSystemFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --fontOpenSans: "Open Sans";
 }
 
-thead,
-tfoot {
-    background-color: #333;
-    color: #fff;
+body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-family: var(--fontSystemFont);
+  height: calc(100vh - 1em);
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* yes */
+body.yes{
+  background-color: #14171c;
+  color: white;
+}
+
+/* no */
+body.no {
+    background-color: white;
+    color: #14171c;
+}
+
+/* main content wrapper */
+.content {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* jumbotron */
+.jumbotron {
+  align-items: center;
+  background:transparent;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3em;
+}
+
+.jumbotron h1 {
+  font-size: 8em;
+  font-weight: 600;
+  margin: 0;
+}
+
+.jumbotron h2 {
+  font-size: 2em;
+  margin: 0;
+}
+
+/* schedule content wrapper */
+.schedule-container {
+  display: flex;
+  flex: 1;
+  flex-flow: row wrap;
+  margin-top: 2.5em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  width: 100%;
+}
+
+/* layout styles */
+
+/* right column elements - right align with left border */
+.schedule-container div:nth-child(2),
+.schedule-container div:nth-child(4) {
+  border-left: 1px solid white;
+  align-items: flex-end;
+}
+
+/* 2nd row elements - top border */
+.schedule-container div:nth-child(3),
+.schedule-container div:nth-child(4) {
+  border-top: 1px solid white;
+}
+
+/* left column elements - left margin for @ / v */
+.schedule-container div:nth-child(1) h2,
+.schedule-container div:nth-child(3) h2 {
+  margin-left: 0.65em;
+}
+
+/* match-info element */
+.match-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5em;
+  width: 50%;
+}
+
+/* home matches -> gold background, rouge secdonary text */
+
+.match-info.home {
+  background-color: #988052;
+}
+
+/* link color */
+.match-info.home a,
+.match-info.home a:visited {
+  color: #74090c;
+}
+
+/* link hover color */
+.match-info.home a:hover {
+  color: #be1931;
+}
+
+/* 'v' symbol for home */
+.match-info.home h2:before {
+  content: "v";
+  font-size: 0.5em;
+  left: -1em;
+  position: relative;
+  top: 1.6em;
+}
+
+.match-info.home p {
+  color: #74090c;
+}
+
+/* away match -> rouge background, gold secondary text */
+
+.match-info.away {
+  background-color: #74090c;
+}
+
+.match-info.away a,
+.match-info.away a:visited {
+  color: #988052;
+}
+
+.match-info.away a:hover {
+  color: #c7990b;
+}
+
+/* '@' symbol for away */
+.match-info.away h2:before {
+  content: "@";
+  font-size: .5em;
+  left: -1.1em;
+  position: relative;
+  top: 1.6em;
+}
+
+.match-info.away p {
+  color: #988052;
+}
+
+/* match element opponent styles */
+
+.match-info h2 {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-size: 3em;
+  justify-content: center;
+}
+
+/* match element secondary text styles */
+.match-info p {
+  font-size: 1.25em;
+  font-weight: 700;
+  margin: 0.25em 0;
+  text-transform: uppercase;
 }
