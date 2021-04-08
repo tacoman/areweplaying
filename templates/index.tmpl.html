@@ -23,7 +23,7 @@
     <div class="schedule-container">
       {{ range .Matches }}
       <!-- need check from home/away -->
-      <div class="match-info home"> 
+      <div class="match-info {{.HomeOrAway}}"> 
         <p>{{.Time.Format "Mon Jan 02 15:04"}}</p>
         <h2>{{.Opponent}}</h2>
         <p>{{.Venue}}</p>

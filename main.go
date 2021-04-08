@@ -23,6 +23,7 @@ type Match struct {
 	Competition string
 	StreamLink  string
 	StreamTitle string
+	HomeOrAway  string
 }
 
 type CalendarEvents struct {
@@ -42,6 +43,7 @@ type CalendarEvents struct {
 		Created  time.Time `json:"created"`
 		Updated  time.Time `json:"updated"`
 		Summary  string    `json:"summary"`
+		Description  string    `json:"description"`
 		Location string    `json:"location"`
 		Creator  struct {
 			Email string `json:"email"`
@@ -109,10 +111,10 @@ func main() {
 	
 		var matches []Match
 		for _, event := range events.Items {
-			if strings.Contains(event.Summary, "at") ||
-			strings.Contains(event.Summary, "vs") ||
-			strings.Contains(event.Summary, "VS") ||
-			strings.Contains(event.Summary, "AT") {
+			if strings.Contains(event.Summary, " at ") ||
+			strings.Contains(event.Summary, " vs ") ||
+			strings.Contains(event.Summary, " VS ") ||
+			strings.Contains(event.Summary, " AT ") {
 				match := Match{}
 				match.Venue = event.Location
 				match.Time = event.Start.Datetime
@@ -129,6 +131,11 @@ func main() {
 					} else {
 						match.Opponent = "???????"
 					}
+				}
+				match.HomeOrAway = "home"
+				if strings.Contains(event.Summary, " at ") ||
+				strings.Contains(event.Summary, " AT ") {
+					match.HomeOrAway = "away"
 				}
 				matches = append(matches, match)
 			}
@@ -153,8 +160,8 @@ func main() {
 			}
 		}
 		maxLength := len(matches)
-		if maxLength > index+5 {
-			maxLength = index + 5
+		if maxLength > index+4 {
+			maxLength = index + 4
 		}
 		activeMatches := matches[index:maxLength]
 		c.HTML(http.StatusOK, "index.tmpl.html", gin.H{
