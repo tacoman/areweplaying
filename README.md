@@ -1,16 +1,16 @@
 
-# go-getting-started
+# Is DCFC playing?
 
-The source code for the [Is Detroit City FC playing yet?](https://thereisnodomainyetbutgoodonyouforchecking.org) website. Edit the JSON files in `data/` to set the schedule and submit a PR to update it automatically.
+The source code for the [Is Detroit City FC playing today?](http://isdetroitcityplayingtoday.com) website.
 
 ## Running Locally
 
 Make sure you have [Go](http://golang.org/doc/install) version 1.12 or newer and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
 
 ```sh
-$ git clone https://github.com/heroku/go-getting-started.git
+$ git clone https://github.com/tacoman/areweplaying
 $ cd go-getting-started
-$ go build -o bin/go-getting-started -v . # or `go build -o bin/go-getting-started.exe -v .` in git bash
+$ go build -o bin/areweplaying -v . # or `go build -o bin/go-getting-started.exe -v .` in git bash
 github.com/mattn/go-colorable
 gopkg.in/bluesuncorp/validator.v5
 golang.org/x/net/context
@@ -24,23 +24,4 @@ github.com/heroku/go-getting-started
 $ heroku local
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-## Deploying to Heroku
-
-```sh
-$ heroku create
-$ git push heroku main
-$ heroku open
-```
-
-or
-
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-
-## Documentation
-
-For more information about using Go on Heroku, see these Dev Center articles:
-
-- [Go on Heroku](https://devcenter.heroku.com/categories/go)
+The app should now be running on [localhost:5000](http://localhost:5000/).

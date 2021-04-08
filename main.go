@@ -99,7 +99,6 @@ func main() {
 		log.Fatal("$PORT must be set")
 	}
 
-
 	router := gin.New()
 	router.Use(gin.Logger())
 	router.LoadHTMLGlob("templates/*.tmpl.html")
