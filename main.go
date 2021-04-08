@@ -132,6 +132,7 @@ func main() {
 						match.Opponent = "???????"
 					}
 				}
+				match.Opponent = match.Opponent[4:]
 				match.HomeOrAway = "home"
 				if strings.Contains(event.Summary, " at ") ||
 				strings.Contains(event.Summary, " AT ") {
