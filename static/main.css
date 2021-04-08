@@ -166,6 +166,7 @@ body.no {
   flex-direction: column;
   font-size: 3em;
   justify-content: center;
+  color: #fff;
 }
 
 /* match element secondary text styles */
