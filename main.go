@@ -147,6 +147,7 @@ func main() {
 
 		y, m, d := time.Now().Date()
 		var today = time.Date(y, m, d, 0, 0, 0, 0, time.Now().Location())
+		//var tomorrow = time.Date(y, m, d + 1, 0, 0, 0, 0, time.Now().Location())
 		var index int
 		var element Match
 		matchday := false
@@ -163,7 +164,17 @@ func main() {
 		if maxLength > index+4 {
 			maxLength = index + 4
 		}
-		activeMatches := matches[index:maxLength]
+		var activeMatches []Match
+		if matchday {
+			activeMatches = make([]Match, 0, 4)
+			for _, match := range matches {
+				if match.Time.Day() == d {
+					activeMatches = append(activeMatches, match)
+				}				
+			}
+		} else {
+			activeMatches = matches[index:maxLength]
+		}
 		c.HTML(http.StatusOK, "index.tmpl.html", gin.H{
 			"Matches":  activeMatches,
 			"Matchday": matchday,
