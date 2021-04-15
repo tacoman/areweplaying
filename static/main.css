@@ -7,6 +7,8 @@
   --fontOpenSans: "Open Sans";
 }
 
+h1, h2 { margin: 0}
+
 body {
   display: flex;
   flex: 1;
@@ -26,8 +28,8 @@ body.yes{
 
 /* no */
 body.no {
-    background-color: white;
-    color: #14171c;
+  background-color: white;
+  color: #14171c;
 }
 
 /* main content wrapper */
@@ -39,32 +41,48 @@ body.no {
   width: 100%;
 }
 
-/* jumbotron */
-.jumbotron {
-  align-items: center;
-  background:transparent;
+.yesno-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 3em;
+  flex: 1;
+  padding: 2em;
+  width: 100%;
+}
+
+/* jumbotron */
+.jumbotron {
+  background:transparent;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 30%;
+  margin: 0;
+  padding: 0;
 }
 
 .jumbotron h1 {
-  font-size: 8em;
-  font-weight: 600;
-  margin: 0;
+  font-size: 6em;
+  font-weight: 800;
 }
 
 .jumbotron h2 {
+  color: #74090c;
+  font-weight: 400;
   font-size: 2em;
-  margin: 0;
+}
+
+.yes div.jumbotron h2 {
+  color: #988052;
 }
 
 /* schedule content wrapper */
 .schedule-container {
+  align-content: flex-start;
   display: flex;
   flex: 1;
   flex-flow: row wrap;
-  margin-top: 2.5em;
+  min-height: 70%;
   padding-top: 1.5em;
   padding-bottom: 1.5em;
   width: 100%;
@@ -76,7 +94,6 @@ body.no {
 .schedule-container div:nth-child(2),
 .schedule-container div:nth-child(4) {
   border-left: 1px solid white;
-  align-items: flex-end;
 }
 
 /* 2nd row elements - top border */
@@ -85,19 +102,15 @@ body.no {
   border-top: 1px solid white;
 }
 
-/* left column elements - left margin for @ / v */
-.schedule-container div:nth-child(1) h2,
-.schedule-container div:nth-child(3) h2 {
-  margin-left: 0.65em;
-}
-
 /* match-info element */
 .match-info {
   display: flex;
+  flex: 1 0 50%;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0.5em;
+  padding: 2em;
   width: 50%;
+  max-height: 18em;
 }
 
 /* home matches -> gold background, rouge secdonary text */
@@ -161,12 +174,13 @@ body.no {
 /* match element opponent styles */
 
 .match-info h2 {
+  color: #fff;
   display: flex;
   flex: 1;
   flex-direction: column;
   font-size: 3em;
   justify-content: center;
-  color: #fff;
+  margin-left: 0.65em;
 }
 
 /* match element secondary text styles */
@@ -175,4 +189,23 @@ body.no {
   font-weight: 700;
   margin: 0.25em 0;
   text-transform: uppercase;
+}
+
+/* mobile styles */
+
+@media (min-width: 0px) and (max-width: 800px) {
+  .schedule-container {
+    flex-direction:column;
+    flex-wrap:unset;
+  }
+  .match-info{
+    width:100%
+  }
+  .schedule-container div:nth-child(2){
+    border-top: 1px solid white;
+    border-left: none;
+  }
+  .schedule-container div:nth-child(4) {
+    border-left: none;
+  }
 }
