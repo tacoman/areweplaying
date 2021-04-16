@@ -168,7 +168,7 @@ func main() {
 		if matchday {
 			activeMatches = make([]Match, 0, 4)
 			for _, match := range matches {
-				if match.Time.Day() == d {
+				if match.Time.Day() == d && match.Time.Month() == m {
 					activeMatches = append(activeMatches, match)
 				}				
 			}
