@@ -194,9 +194,13 @@ body.no {
 /* mobile styles */
 
 @media (min-width: 0px) and (max-width: 800px) {
+  .jumbotron {
+    min-height: 40%;
+  }
   .schedule-container {
     flex-direction:column;
     flex-wrap:unset;
+    min-height: 60%;
   }
   .match-info{
     width:100%
@@ -207,5 +211,11 @@ body.no {
   }
   .schedule-container div:nth-child(4) {
     border-left: none;
+  }
+  .jumbotron h1 {
+    font-size: 3.5em;
+  }
+  .match-info h2 {
+    font-size: 2em;
   }
 }
